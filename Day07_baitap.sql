@@ -13,3 +13,42 @@ SELECT manufacturer
 FROM pharmacy_sales
 GROUP BY manufacturer
 ORDER BY SUM(total_sales) DESC, manufacturer
+---Ex4
+SELECT EXTRACT(month from submit_if) As mth,
+product_id,
+ROUND(AVG(stars),2) As avg_stars
+FROM reviews
+GROUP BY mth, product_id
+ORDER BY mth, product_id
+---Ex5
+SELECT sender_id
+COUNT(message_id) As message_count
+FROM messages
+GROUP BY sender_id
+WHERE EXTRACT(month FROM sent_date)=8
+AND EXTRACT(year FROM sent_date)=2022
+GROUP BY sender_id
+ORDER BY message_count DESC
+LIMIT 2
+---Ex6
+SELECT tweet_id FROM Tweets
+WHERE LENGTH(content)>15
+---Ex7
+SELECT activity_date As day,
+COUNT(used_id) As active_users
+FROM Activity
+WHERE activity_date <='2019-07-27' AND activity_date <30
+---Ex8
+select COUNT(employee_id) As number employee
+from employees
+WHERE extract(month FROM joining_date) between 1 and 7
+abd extract(year FROM joining_date)=2022
+---Ex9
+select position('a' in first_name) As position
+from worker
+where first_name='Amitah'
+---Ex10
+select substring(title, length(winery)+2,4)
+from winemag_p2
+where country='Macedonia'
+
